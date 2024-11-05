@@ -1,12 +1,14 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate  # Importa Flask-Migrate
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)  # Inicializa Flask-Migrate con tu app y db
 
-# Mueve la importación del modelo aquí, después de inicializar `db`
+# Importar modelos y controladores después de definir `db`
 from models.user import User  
 from controllers.user_controller import user_blueprint
 app.register_blueprint(user_blueprint)
