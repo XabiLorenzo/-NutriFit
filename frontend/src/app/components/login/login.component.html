@@ -1,0 +1,34 @@
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form (submit)="onLogin($event)">
+      <div class="form-group">
+        <label for="username">Usuario:</label>
+        <input
+          type="text"
+          id="username"
+          placeholder="Introduce tu usuario"
+          [value]="username()"
+          (input)="updateUsername($any($event.target).value)"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Introduce tu contraseña"
+          [value]="password()"
+          (input)="updatePassword($any($event.target).value)"
+        />
+      </div>
+  
+      <button type="submit" class="btn">Iniciar Sesión</button>
+      <p class="register-link">
+        ¿No tienes una cuenta?
+        <button (click)="goToRegister()">Regístrate aquí</button>
+      </p>
+    </form>
+  </div>
+  
+  
