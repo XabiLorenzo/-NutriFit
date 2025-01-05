@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div class="header">
+  <img src="/assets/logo.png" alt="Logo" class="logo" />
+  <button (click)="goToProfile()">Perfil</button>
+  <button (click)="goToLogin()">Iniciar sesión</button>
+</div>
+
+<div class="home-container">
+
+  <div class="food-list">
+    <ng-container *for="let food of foods()">
+      <div class="food-card">
+        <h3>{{ food.name }}</h3>
+        <img [src]="food.image || '/assets/default-food.png'" alt="{{ food.name }}" />
+        <p>Calorías: {{ food.calories }}</p>
+        <p>Proteína: {{ food.protein }} g</p>
+        <button (click)="viewDetails(food.id)">Ver detalles</button>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="footer">
+  <p>&copy; 2024 NutriFit</p>
+</div>
+
+
+  
