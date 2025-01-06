@@ -11,7 +11,8 @@ const Home = () => {
     useEffect(() => {
         const fetchFoods = async () => {
             try {
-                const response = await fetch("http://127.0.0.1:8000/foods");
+                //http://127.0.0.1:8000/foods
+                const response = await fetch("http://localhost:8000/foods");
                 if (!response.ok) {
                     throw new Error("Error al obtener los alimentos");
                 }

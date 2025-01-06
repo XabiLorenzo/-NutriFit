@@ -1,0 +1,96 @@
+services:
+  user_service:
+    build:
+      context: .
+      dockerfile: user_service/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - SQLALCHEMY_DATABASE_URI=mysql+pymysql://root:root@db_user_service/nutrifit_db
+    depends_on:
+      - mysql_db
+    networks:
+      - app_network
+    volumes:
+      - ./user_service:/app
+      - ./requirements.txt:/app/requirements.txt
+
+  food_service:
+    build:
+      context: ./food_service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGODB_URI=mongodb://db_food_service:27017/nutrifit_db
+    depends_on:
+      - mongodb
+    networks:
+      - app_network
+    volumes:
+      - ./food_service:/app
+
+  api_gateway:
+    build:
+      context: . # El contexto sigue siendo el nivel raíz del proyecto
+      dockerfile: ./api_gateway/Dockerfile # Dockerfile dentro de api_gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - user_service
+      - food_service
+    networks:
+      - app_network
+    environment:
+      - USER_SERVICE_URL=http://user_service:5000
+      - FOOD_SERVICE_URL=http://food_service:3001/api/foods
+    volumes:
+      - ./api_gateway:/app
+
+  frontend-react:
+    build:
+      context: ./frontend-react
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api_gateway
+    networks:
+      - app_network
+    volumes:
+      - ./frontend-react:/app
+
+  mysql_db:
+    image: mysql:8.0
+    container_name: db_user_service
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nutrifit_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - app_network
+
+  mongodb:
+    image: mongo:4.4
+    container_name: db_food_service
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./docker/mongo/init:/docker-entrypoint-initdb.d
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  mongo_data:
+

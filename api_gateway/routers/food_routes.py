@@ -2,7 +2,8 @@ from fastapi import APIRouter, HTTPException, Header
 import requests
 
 router = APIRouter()
-FOOD_SERVICE_URL = "http://127.0.0.1:3001/api/foods"  # URL del microservicio food_service
+# FOOD_SERVICE_URL = "http://127.0.0.1:3001/api/foods"  # URL del microservicio food_service
+FOOD_SERVICE_URL = "http://food_service:3001/api/foods"
 
 # Ruta para obtener un alimento por ID
 @router.get("/{food_id}")

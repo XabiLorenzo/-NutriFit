@@ -2,7 +2,8 @@ from fastapi import APIRouter, HTTPException, Header
 import requests
 
 router = APIRouter()
-USER_SERVICE_URL = "http://127.0.0.1:5000"  # URL del user_service
+# USER_SERVICE_URL = "http://127.0.0.1:5000"  # URL del user_service
+USER_SERVICE_URL = "http://user_service:5000"
 
 # Ruta para registrar un usuario
 @router.post("/register")

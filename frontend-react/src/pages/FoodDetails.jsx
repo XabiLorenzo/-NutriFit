@@ -12,7 +12,8 @@ const FoodDetails = () => {
   useEffect(() => {
     const fetchFoodDetails = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/foods/${id}`);
+        //http://127.0.0.1:8000/foods/${id}
+        const response = await fetch(`http://localhost:8000/foods/${id}`);
         if (!response.ok) {
           throw new Error('Error al obtener los detalles del alimento');
         }
