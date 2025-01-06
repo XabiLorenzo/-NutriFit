@@ -22,7 +22,7 @@ def login_user(data: dict):
     return response.json()
 
 # Ruta para obtener detalles de un usuario por ID
-@router.get("/users/{user_id}")
+@router.get("/{user_id}")
 def get_user(user_id: int, authorization: str = Header(None)):
     if not authorization:
         raise HTTPException(status_code=401, detail="Authorization header is required")
@@ -34,7 +34,7 @@ def get_user(user_id: int, authorization: str = Header(None)):
     return response.json()
 
 # Ruta para actualizar objetivos nutricionales
-@router.put("/users/{user_id}/goals")
+@router.put("/{user_id}/goals")
 def update_goals(user_id: int, data: dict, authorization: str = Header(None)):
     if not authorization:
         raise HTTPException(status_code=401, detail="Authorization header is required")
@@ -46,7 +46,7 @@ def update_goals(user_id: int, data: dict, authorization: str = Header(None)):
     return response.json()
 
 # Ruta para registrar una actividad
-@router.post("/users/{user_id}/activity")
+@router.post("/{user_id}/activity")
 def add_activity(user_id: int, data: dict, authorization: str = Header(None)):
     if not authorization:
         raise HTTPException(status_code=401, detail="Authorization header is required")
@@ -58,7 +58,7 @@ def add_activity(user_id: int, data: dict, authorization: str = Header(None)):
     return response.json()
 
 # Ruta para consultar actividades
-@router.get("/users/{user_id}/activity")
+@router.get("/{user_id}/activity")
 def get_activities(user_id: int, authorization: str = Header(None)):
     if not authorization:
         raise HTTPException(status_code=401, detail="Authorization header is required")
@@ -68,3 +68,37 @@ def get_activities(user_id: int, authorization: str = Header(None)):
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.json())
     return response.json()
+
+
+
+
+
+
+
+# @router.get("/users/{user_id}")
+# def get_user(user_id: int):
+#     response = requests.get(f"{USER_SERVICE_URL}/users/{user_id}")
+#     if response.status_code != 200:
+#         raise HTTPException(status_code=response.status_code, detail=response.json())
+#     return response.json()
+
+# @router.put("/users/{user_id}/goals")
+# def update_goals(user_id: int, data: dict):
+#     response = requests.put(f"{USER_SERVICE_URL}/users/{user_id}/goals", json=data)
+#     if response.status_code != 200:
+#         raise HTTPException(status_code=response.status_code, detail=response.json())
+#     return response.json()
+
+# @router.post("/users/{user_id}/activity")
+# def add_activity(user_id: int, data: dict):
+#     response = requests.post(f"{USER_SERVICE_URL}/users/{user_id}/activity", json=data)
+#     if response.status_code != 201:
+#         raise HTTPException(status_code=response.status_code, detail=response.json())
+#     return response.json()
+
+# @router.get("/users/{user_id}/activity")
+# def get_activities(user_id: int):
+#     response = requests.get(f"{USER_SERVICE_URL}/users/{user_id}/activity")
+#     if response.status_code != 200:
+#         raise HTTPException(status_code=response.status_code, detail=response.json())
+#     return response.json()
