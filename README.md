@@ -8,7 +8,6 @@ NutriFit es una aplicación web diseñada para ayudar a los usuarios a gestionar
 - [Instalación](#instalación)
 - [Configuración](#configuración)
 - [Ejecución](#ejecución)
-- [Rutas principales](#rutas-principales)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
 
 ---
@@ -33,30 +32,19 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
 2. **Configurar variables de entorno**:
     Crea un archivo .env en la raíz del proyecto y configura las siguientes variables según sea necesario:
+    ```bash
     USER_SERVICE_URL=http://user_service:5000
     FOOD_SERVICE_URL=http://food_service:3001
 
-3. **Estructura del proyecto**:
-    nutrifit/
-    ├── api_gateway/
-    ├── docker/
-    │   ├── mongo/
-    │   └── mysql/
-    ├── food_service/
-    ├── frontend-react/
-    ├── user_service/
-    ├── docker-compose.yml
-    ├── README.md
-    └── .env
-
 ## Configuración
 
-**MySQL**: Los scripts de inicialización de la base de datos están en docker/mysql/init/.
-**MongoDB**: Los datos iniciales para MongoDB se encuentran en docker/mongo/init/.
+- **MySQL**: Los scripts de inicialización de la base de datos están en docker/mysql/init/.
+- **MongoDB**: Los datos iniciales para MongoDB se encuentran en docker/mongo/init/.
 
 ## Ejecución
 
 1. **Levantar los contenedores con Docker Compose**: Desde la raíz del proyecto, ejecuta:
+    ```bash
     docker-compose up --build
 
 2. **Acceder a la aplicación**:
@@ -68,18 +56,18 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 ## Tecnologías utilizadas
 
 1. Frontend:
-    React
-    CSS
+    - React
+    - CSS
 
 2. Backend:
-    Flask (User Service)
-    Node.js (Food Service)
-    FastAPI (API Gateway)
+    - Flask (User Service)
+    - Node.js (Food Service)
+    - FastAPI (API Gateway)
 
 3. Base de datos:
-    MySQL (User Service)
-    MongoDB (Food Service)
+    - MySQL (User Service)
+    - MongoDB (Food Service)
 
 4. Contenerización:
-    Docker
-    Docker Compose
+    - Docker
+    - Docker Compose
