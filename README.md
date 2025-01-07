@@ -51,6 +51,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
     Frontend: http://localhost:3000
 
 3. **Parar los contenedores**: Para detener todos los servicios, usa:
+    ```bash
     docker-compose down
 
 ## Tecnologías utilizadas
