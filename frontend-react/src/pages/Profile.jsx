@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate para manejar redirecciones
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 const Profile = () => {
-    const navigate = useNavigate(); // Hook para redirecciones
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [goals, setGoals] = useState(null);
     const [activities, setActivities] = useState([]);

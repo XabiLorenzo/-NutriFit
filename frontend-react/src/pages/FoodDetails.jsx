@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './FoodDetails.css';
 
 const FoodDetails = () => {
-  const { id } = useParams(); // Obtén el ID del alimento desde la URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const [food, setFood] = useState(null);
   const [loading, setLoading] = useState(true);
